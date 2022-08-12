@@ -71,8 +71,6 @@ public class Main {
 
     public static EntityManagerFactory provideFactory(String unitName) {
         return Persistence.createEntityManagerFactory(unitName);
-        //return Persistence.createEntityManagerFactory("mysql");
-        //return Persistence.createEntityManagerFactory("h2_memory");
     }
 
     /**
