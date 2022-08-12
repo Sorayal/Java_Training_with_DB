@@ -1,8 +1,28 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.1"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-    <persistence-unit name="pers_unit">
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+    <persistence-unit name="h2_memory">
+        <!-- necessary, otherwise an exception of missing provider will be thrown -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <!-- Define the classes -->
+        <!--<class>org.hibernate.User</class> -->
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+            <property name="hibernate.connection.driver_class" value="org.h2.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1;" />
+            <property name="hibernate.connection.username" value="" />
+            <property name="hibernate.connection.password" value="" />
+            <property name="hibernate.connection.pool_size" value="5" />
+
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+        </properties>
+    </persistence-unit>
+
+    <!-- for each connection you define a persistence-unit which is named and will be taken by the EntityManager-->
+    <persistence-unit name="mysql">
         <description>Hibernate Tips</description>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>

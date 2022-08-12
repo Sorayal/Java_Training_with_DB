@@ -8,14 +8,20 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
+    private static final Scanner SCANNER = new Scanner(System.in);
+
+    private static Scanner getScanner() {
+        return SCANNER;
+    }
+
     public static void main(String[] args) {
-        EntityManagerFactory emf = provideFactory();
+        EntityManagerFactory emf = provideFactory(setPersistenceName());
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-
         System.out.println("Please choose what you want do: 1 - Persist, 2 - Update, 3 - Delete");
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = getScanner();
         boolean isFinished;
         do {
             String input = scanner.nextLine();
@@ -30,8 +36,8 @@ public class Main {
                     break;
                 case "2":
                     String cmd = "FROM Author a WHERE a.first_name = 'Maru'";
-                    List<Author> request =  em.createNamedQuery(cmd).getResultList();
-                    maru =  request.get(0);
+                    List<Author> request = em.createNamedQuery(cmd).getResultList();
+                    maru = request.get(0);
                     //query.
                     //maru = em.find(Author.class, 1L);
                     //
@@ -48,14 +54,25 @@ public class Main {
                     isFinished = false;
             }
         } while (!isFinished);
-
-
         //em.getTransaction().commit();
         em.close();
     }
 
-    public static EntityManagerFactory provideFactory(){
-        return Persistence.createEntityManagerFactory("pers_unit");
+    public static String setPersistenceName() {
+        Scanner scanner = getScanner();
+        System.out.println("Choose Database: 1 for My SQL ; 2 for H2");
+        String input = scanner.nextLine();
+        return switch (input) {
+            case "1" -> "mysql";
+            case "2" -> "h2_memory";
+            default -> throw new IllegalArgumentException("Not a valid choice");
+        };
+    }
+
+    public static EntityManagerFactory provideFactory(String unitName) {
+        return Persistence.createEntityManagerFactory(unitName);
+        //return Persistence.createEntityManagerFactory("mysql");
+        //return Persistence.createEntityManagerFactory("h2_memory");
     }
 
     /**
