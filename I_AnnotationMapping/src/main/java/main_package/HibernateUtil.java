@@ -13,15 +13,25 @@ public class HibernateUtil {
 
     public static SessionFactory getSessionFactory(){
         if(sessionFactory == null){
-            setupSessionFactory();
+            setupSessionFactory(null);
+        }
+        return sessionFactory;
+    }
+
+    public static SessionFactory getSessionFactory(String configfile){
+        if(configfile == null){
+            configfile = "/hibernate_configs/hibernate-h2_testdb.cfg.xml";
+        }
+        if(sessionFactory == null){
+            setupSessionFactory(configfile);
         }
         return sessionFactory;
     }
 
 
     // .addAnnotatedClass needs to be added to prevent unable to locate persister error
-    private static void setupSessionFactory(){
-        String configfile = "/hibernate_configs/hibernate-h2_testdb.cfg.xml";
+    private static void setupSessionFactory(String configfile){
+        //String configfile = "/hibernate_configs/hibernate-h2_testdb.cfg.xml";
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure(configfile)
                 .build();
