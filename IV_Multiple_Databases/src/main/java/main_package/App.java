@@ -13,5 +13,6 @@ public class App {
         // session.createNativeQuery("").setParameter("")
         session.createQuery("");
         // session.save(myObject);
+
     }
 }

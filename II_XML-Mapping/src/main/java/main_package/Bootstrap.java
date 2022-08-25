@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 public class Bootstrap {
     public static void main(String[] args) {
         String connString = "jdbc:h2:file:./test_db";
-        try{
+
             /*
             // JDBC Style
             Connection connection = DriverManager.getConnection(connString);
@@ -20,23 +20,19 @@ public class Bootstrap {
             System.out.println(hasResult);
             */
 
-            // Hibernate
-            SessionFactory factory = HibernateUtil.getSessionFactory();
-            Session session = factory.openSession();
+        // Hibernate
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // SessionFactory factory = HibernateUtil.getSessionFactory();
+            // Session session = factory.openSession();
             Student student = new Student("Julia", "Hannes", "Madrid");
 
             session.beginTransaction();
             session.persist(student);
             session.getTransaction().commit();
-            session.close();
-
-
-
-
-            //connection.close();;
-        }catch (Exception e){
+            // session.close(); not necessary with Try-with
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
+        //connection.close();;
     }
 }

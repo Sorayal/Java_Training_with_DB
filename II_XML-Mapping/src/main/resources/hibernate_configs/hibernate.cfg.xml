@@ -5,9 +5,9 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/recipes</property>
-        <property name="hibernate.connection.username">bookadmin2</property>
-        <property name="hibernate.connection.password">password</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/students</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">test</property>
 
         <!-- JDBC connection pool -->
         <property name="hibernate.connection.pool_size">5</property>
@@ -25,6 +25,8 @@
         <!-- Drop and re-create the database schema on startup by Hibernate, disable for production (set on validate) -->
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
 
+        <!-- Mapping Resources, old style via XML, prefer using Annotations -->
+        <mapping resource="Student.hbm.xml"/>
         <!--<mapping resource="book.hbm.xml" /> -->
     </session-factory>
 </hibernate-configuration>
