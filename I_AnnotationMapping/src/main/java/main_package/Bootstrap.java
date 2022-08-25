@@ -24,6 +24,19 @@ public class Bootstrap {
             session.persist(student);
             session.getTransaction().commit();
 
+            // Select Student with ID 1
+            Student fetchedStudent = session.get(Student.class, 1);
+            System.out.println(fetchedStudent.getId());
+
+            // Delete persistent student
+            // don´t use delete anymore, it´s deprecated, instead use remove
+            // if student is still in transient state , get is not necessary.
+            // Remove it only to put it in detached state
+            Student fetchedToDelete = session.get(Student.class, 1);
+            if(null != fetchedToDelete){
+                session.remove(fetchedToDelete);
+            }
+
             Scanner scanner = new Scanner(System.in);
             scanner.nextLine();
 
