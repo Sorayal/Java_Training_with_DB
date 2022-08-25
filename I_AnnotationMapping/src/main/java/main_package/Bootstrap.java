@@ -16,7 +16,7 @@ public class Bootstrap {
 
     public static void main(String[] args) {
         String configFile = setConfigFileForDB();
-        // Used Try-with
+        // Used Try-with // getCurrentSession will close the session after commit!
         try (Session session = HibernateUtil.getSessionFactory(configFile).openSession()) {
             Student student = new Student("Julia", "Hannes", "Madrid");
 
