@@ -4,19 +4,26 @@
         "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+        <!-- with JDBC API logging -->
+        <property name="hibernate.connection.driver_class">com.p6spy.engine.spy.P6SpyDriver</property>
+        <property name="hibernate.connection.url">jdbc:p6spy:mysql://localhost:3306/students</property>
+
+        <!-- without JDBC API logging -->
+        <!--
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/students</property>
+        -->
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">test</property>
 
         <!-- JDBC connection pool -->
-        <property name="hibernate.connection.pool_size">5</property>
+        <property name="hibernate.connection.pool_size">1</property>
 
 
         <property name="hibernate.current_session_context_class">thread</property>
 
         <!-- shows formatted sql in the console -->
-        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.show_sql">false</property>
         <property name="hibernate.format_sql">true</property>
 
         <!-- SQL dialect -->
