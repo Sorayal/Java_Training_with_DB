@@ -16,7 +16,7 @@ public class Student {
     private String city;
 
     public Student(String surName, String lastName, String city){
-        super();
+        //super();
         this.surName = surName;
         this.lastName = lastName;
         this.city = city;
