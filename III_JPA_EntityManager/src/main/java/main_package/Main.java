@@ -10,6 +10,8 @@ import java.util.Scanner;
 public class Main {
 
     private static final Scanner SCANNER = new Scanner(System.in);
+    private EntityManagerFactory emf;
+    private EntityManager em;
 
     private static Scanner getScanner() {
         return SCANNER;
