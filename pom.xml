@@ -13,6 +13,7 @@
         <module>II_XML-Mapping</module>
         <module>III_JPA_EntityManager</module>
         <module>IV_Multiple_Databases</module>
+        <module>V_JPA_Postgres</module>
     </modules>
 
     <properties>

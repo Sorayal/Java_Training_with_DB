@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS Aircraft (
+    Id INTEGER PRIMARY KEY,
+    Status VARCHAR(20)
+);
