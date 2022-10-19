@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <persistence-unit name="h2_memory">
+        <!-- necessary, otherwise an exception of missing provider will be thrown -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <!-- Define the classes -->
+        <!--<class>org.hibernate.User</class> -->
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+            <property name="hibernate.connection.driver_class" value="org.h2.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:scripts/V1.0.0__initial_table_aircraft.sql'" />
+            <property name="hibernate.connection.username" value="" />
+            <property name="hibernate.connection.password" value="" />
+            <property name="hibernate.connection.pool_size" value="5" />
+
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+
+            <!-- use this with "create" if you have already annotated entity classes in your programme or xml based classes -->
+            <!-- in production its "none" or "validate" -->
+            <property name="hibernate.hbm2ddl.auto" value="validate" />
+        </properties>
+    </persistence-unit>
+</persistence>
