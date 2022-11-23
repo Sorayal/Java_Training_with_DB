@@ -11,8 +11,10 @@
         <!--<class>org.hibernate.User</class> -->
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
-            <property name="hibernate.connection.driver_class" value="org.h2.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:scripts/V1.0.0__initial_table_aircraft.sql'" />
+            <property name="hibernate.connection.driver_class" value="com.p6spy.engine.spy.P6SpyDriver" />
+            <!-- <property name="hibernate.connection.driver_class" value="org.h2.Driver" /> -->
+            <property name="hibernate.connection.url" value="jdbc:p6spy:h2:mem:db1;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:scripts/V1.0.0__initial_table_aircraft.sql'" />
+            <!--<property name="hibernate.connection.url" value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:scripts/V1.0.0__initial_table_aircraft.sql'" /> -->
             <property name="hibernate.connection.username" value="" />
             <property name="hibernate.connection.password" value="" />
             <property name="hibernate.connection.pool_size" value="5" />
